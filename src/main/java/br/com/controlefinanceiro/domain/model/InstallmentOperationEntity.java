@@ -1,4 +1,4 @@
-package br.com.controlefinanceiro.domain.domain.model;
+package br.com.controlefinanceiro.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,17 +30,17 @@ public class InstallmentOperationEntity {
     @Column(name = "date_hour_payment")
     private LocalDateTime dateHourPayment;
 
-    @Column(name = "date_prevision_payment")
+    @Column(name = "date_prevision_payment", nullable = false)
     private LocalDateTime datePrevisionPayment;
 
-    @Column(name = "value_prevision")
+    @Column(name = "value_prevision", nullable = false)
     private BigDecimal valuePrevision;
 
     @Column(name = "value_payment")
     private BigDecimal valorPayment;
 
     @ManyToOne
-    @JoinColumn(name = "id_operation")
+    @JoinColumn(name = "id_operation", nullable = false)
     private OperationEntity operation;
 
 }

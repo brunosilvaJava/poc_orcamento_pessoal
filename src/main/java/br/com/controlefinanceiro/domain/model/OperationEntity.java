@@ -1,7 +1,6 @@
-package br.com.controlefinanceiro.domain.domain.model;
+package br.com.controlefinanceiro.domain.model;
 
-import br.com.controlefinanceiro.domain.domain.enums.OperationType;
-import br.com.controlefinanceiro.domain.domain.enums.PaymentType;
+import br.com.controlefinanceiro.domain.enums.OperationType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Data
@@ -26,15 +27,15 @@ public class OperationEntity {
     @Column(name = "id_operation")
     private Long id;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Enumerated
-    @Column(name = "payment_type")
-    private PaymentType paymentType;
+    @ManyToOne
+    @JoinColumn(name = "id_payment_form", nullable = false)
+    private PaymentFormEntity paymentFormEntity;
 
     @Enumerated
-    @Column(name = "operation_type")
+    @Column(name = "operation_type", nullable = false)
     private OperationType operationType;
 
 }

@@ -1,4 +1,4 @@
-package br.com.controlefinanceiro.domain.domain.enums;
+package br.com.controlefinanceiro.domain.enums;
 
 public enum PaymentType {
 
