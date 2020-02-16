@@ -1,7 +1,7 @@
-package br.com.controlefinanceiro.domain.model.domain;
+package br.com.controlefinanceiro.domain.domain.model;
 
-import br.com.controlefinanceiro.domain.model.enums.OperationType;
-import br.com.controlefinanceiro.domain.model.enums.PaymentType;
+import br.com.controlefinanceiro.domain.domain.enums.OperationType;
+import br.com.controlefinanceiro.domain.domain.enums.PaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

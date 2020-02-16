@@ -1,4 +1,4 @@
-package br.com.controlefinanceiro.domain.model.domain;
+package br.com.controlefinanceiro.domain.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
