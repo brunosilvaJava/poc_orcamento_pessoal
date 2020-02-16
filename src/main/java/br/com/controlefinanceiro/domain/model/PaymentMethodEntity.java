@@ -2,6 +2,7 @@ package br.com.controlefinanceiro.domain.model;
 
 import br.com.controlefinanceiro.domain.enums.PaymentType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
@@ -16,20 +17,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-@Entity(name = "payment_form")
-public class PaymentFormEntity {
+@Entity(name = "payment_method")
+public class PaymentMethodEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_payment_form")
+    @Column(name = "id_payment_method")
     private Long id;
 
     @Nullable
-    @Column(name = "descricao", nullable = false)
-    private String descricao;
+    @Column(name = "description", nullable = false)
+    private String description;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_type", nullable = false)
