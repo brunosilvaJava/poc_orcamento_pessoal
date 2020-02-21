@@ -1,4 +1,4 @@
-package br.com.controlefinanceiro.domain.model;
+package br.com.controlefinanceiro.domain.operation;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,8 +38,8 @@ public class InstallmentOperationEntity {
     @Column(name = "value_prevision", nullable = false)
     private BigDecimal valuePrevision;
 
-    @Column(name = "value_payment")
-    private BigDecimal valorPayment;
+    @Column(name = "value_payment", nullable = false)
+    private BigDecimal valuePayment;
 
     @ManyToOne
     @JoinColumn(name = "id_operation", nullable = false)

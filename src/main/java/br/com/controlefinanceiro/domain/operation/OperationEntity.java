@@ -1,12 +1,13 @@
-package br.com.controlefinanceiro.domain.model;
+package br.com.controlefinanceiro.domain.operation;
 
-import br.com.controlefinanceiro.domain.enums.OperationType;
+import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,14 +34,18 @@ public class OperationEntity {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "id_payment_form", nullable = false)
+    @JoinColumn(name = "id_payment_method", nullable = false)
     private PaymentMethodEntity paymentMethodEntity;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "operation_type", nullable = false)
     private OperationType operationType;
 
     @Column(name = "date_hour_buy", nullable = false)
     private LocalDateTime dateHourBuy;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_type", nullable = false)
+    private PaymentType paymentType;
 
 }

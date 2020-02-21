@@ -1,21 +1,22 @@
-package br.com.controlefinanceiro.domain.vo;
+package br.com.controlefinanceiro.domain.paymentMethod;
 
-import br.com.controlefinanceiro.domain.enums.PaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentMethodVO {
+public class PaymentMethodVO implements Serializable {
 
     private Long id;
 
     private String description;
 
-    private PaymentType paymentType;
+    private PaymentMethodType paymentMethodType;
 
 }

@@ -1,16 +1,14 @@
-package br.com.controlefinanceiro.domain.converters;
+package br.com.controlefinanceiro.domain.paymentMethod;
 
-import br.com.controlefinanceiro.domain.model.PaymentMethodEntity;
-import br.com.controlefinanceiro.domain.vo.PaymentMethodVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
 @Mapper
-public interface PaymentFormMapper {
+public interface PaymentMethodMapper {
 
-    PaymentFormMapper INSTANCE = Mappers.getMapper(PaymentFormMapper.class);
+    PaymentMethodMapper INSTANCE = Mappers.getMapper(PaymentMethodMapper.class);
 
     PaymentMethodVO entityToVo(PaymentMethodEntity paymentMethodEntity);
 

@@ -1,7 +1,5 @@
-package br.com.controlefinanceiro.domain.vo;
+package br.com.controlefinanceiro.domain.operation;
 
-import br.com.controlefinanceiro.domain.enums.OperationType;
-import br.com.controlefinanceiro.domain.enums.PaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,13 +15,19 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class OperationVO {
 
+    private Long id;
+
     private String description;
 
-    private BigDecimal amount;
+    private BigDecimal totalValue;
+
+    private Integer numberInstallments;
 
     private OperationType operationType;
 
-    private Long idPaymentForm;
+    private Long idPaymentMethod;
+
+    private PaymentType paymentType;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateHourBuy;

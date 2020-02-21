@@ -1,6 +1,5 @@
-package br.com.controlefinanceiro.domain.model;
+package br.com.controlefinanceiro.domain.paymentMethod;
 
-import br.com.controlefinanceiro.domain.enums.PaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Data
 @Builder
@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Table
 @Entity(name = "payment_method")
-public class PaymentMethodEntity {
+public class PaymentMethodEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class PaymentMethodEntity {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "payment_type", nullable = false)
-    private PaymentType paymentType;
+    @Column(name = "payment_method_type", nullable = false)
+    private PaymentMethodType paymentMethodType;
 
 }

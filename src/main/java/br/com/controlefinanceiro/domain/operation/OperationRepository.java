@@ -1,6 +1,5 @@
-package br.com.controlefinanceiro.domain.repository;
+package br.com.controlefinanceiro.domain.operation;
 
-import br.com.controlefinanceiro.domain.model.OperationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
