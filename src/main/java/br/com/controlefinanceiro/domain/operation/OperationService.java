@@ -89,15 +89,19 @@ public class OperationService {
             value = value.negate();
         }
 
+        final BigDecimal valuePayment = value;
+
         List<LocalDate> datesDue = getDatesDue(operationVO);
 
-        movementService.create(MovementEntity.builder()
+        datesDue.forEach(dateDue -> movementService.create(MovementEntity.builder()
                 .operation(operationEntity)
-                .valuePayment(value)
+                .valuePayment(valuePayment)
                 .status(StatusPaymentType.PENDING)
-                .dateDue(operationEntity.getDateBuy())
+                .dateDue(dateDue)
                 .wallet(walletEntity)
-                .build());
+                .build()));
+
+
 
     }
 
