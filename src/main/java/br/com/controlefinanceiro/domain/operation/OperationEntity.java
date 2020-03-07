@@ -1,6 +1,7 @@
 package br.com.controlefinanceiro.domain.operation;
 
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodEntity;
+import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Objects;
 
 @Data
 @Builder
@@ -41,11 +43,18 @@ public class OperationEntity {
     @Column(name = "operation_type", nullable = false)
     private OperationType operationType;
 
-    @Column(name = "date_hour_buy", nullable = false)
-    private LocalDateTime dateHourBuy;
+    @Column(name = "date_buy", nullable = false)
+    private LocalDate dateBuy;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_type", nullable = false)
     private PaymentType paymentType;
+
+    public PaymentMethodType getPaymentMethodType(){
+        if(Objects.isNull(paymentMethodEntity)){
+            return null;
+        }
+        return paymentMethodEntity.getPaymentMethodType();
+    }
 
 }

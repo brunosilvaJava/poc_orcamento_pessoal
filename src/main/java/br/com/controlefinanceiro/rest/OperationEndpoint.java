@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/operation", produces = "application/json", consumes = "application/json")
+@RequestMapping(value = "/api/operation", produces = "application/json")
 public class OperationEndpoint {
 
     private OperationService operationService;
@@ -21,7 +21,7 @@ public class OperationEndpoint {
 
     @PostMapping
     public void save(@RequestBody OperationVO operationVO){
-        operationService.save(operationVO);
+        operationService.create(operationVO);
     }
 
 }

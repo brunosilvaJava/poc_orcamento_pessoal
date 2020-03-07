@@ -1,5 +1,6 @@
 package br.com.controlefinanceiro.domain.paymentMethod;
 
+import br.com.controlefinanceiro.domain.wallet.WalletEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -36,5 +39,9 @@ public class PaymentMethodEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_method_type", nullable = false)
     private PaymentMethodType paymentMethodType;
+
+    @ManyToOne
+    @JoinColumn(name = "id_wallet")
+    private WalletEntity wallet;
 
 }

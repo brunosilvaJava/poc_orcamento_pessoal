@@ -1,5 +1,6 @@
 package br.com.controlefinanceiro.rest;
 
+import br.com.controlefinanceiro.domain.creditCard.CreditCardService;
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodService;
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class PaymentMethodEndpoint {
 
     @GetMapping("/{idPaymentMethod}")
     public ResponseEntity findById(@PathVariable(name = "idPaymentMethod") Long idPaymentMethod){
-        return ResponseEntity.ok(paymentMethodService.findById(idPaymentMethod));
+        return ResponseEntity.ok(paymentMethodService.findVoById(idPaymentMethod));
     }
 
     @PutMapping("/{idPaymentMethod}")

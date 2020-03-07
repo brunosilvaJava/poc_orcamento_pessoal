@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -25,11 +26,30 @@ public class OperationVO {
 
     private OperationType operationType;
 
-    private Long idPaymentMethod;
-
     private PaymentType paymentType;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime dateHourBuy;
+    private LocalDate dateBuy;
+
+    private Long idPaymentMethod;
+
+    private Long idWallet;
+
+    private PaymentRecurrentVO paymentRecurrent;
+
+}
+
+@Data
+class PaymentRecurrentVO {
+
+    private PaymentRecurrentType type;
+
+    private List<Integer> days;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDate dateStart;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDate dateEnd;
 
 }

@@ -2,7 +2,6 @@ package br.com.controlefinanceiro.domain.paymentMethod;
 
 import br.com.controlefinanceiro.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -19,25 +18,29 @@ public class PaymentMethodService {
     }
 
     public void create(PaymentMethodVO paymentMethodVO) {
-        paymentMethodRepository.save(PaymentMethodMapper.INSTANCE.voToEntity(paymentMethodVO));
+        create(PaymentMethodMapper.INSTANCE.voToEntity(paymentMethodVO));
+    }
+
+    public void create(PaymentMethodEntity paymentMethodEntity) {
+        paymentMethodRepository.save(paymentMethodEntity);
     }
 
     public void update(PaymentMethodVO paymentMethodVO) {
         paymentMethodRepository.save(voToEntity(paymentMethodVO));
     }
 
-    @Cacheable("getPaymemtMethodVOAll")
+    //@Cacheable("getPaymemtMethodVOAll")
     public List<PaymentMethodVO> findAll() {
         return entitysToVos(paymentMethodRepository.findAll());
     }
 
-    @Cacheable(cacheNames = "getPaymemtMethodById", key = "#idPaymentMethod")
-    public PaymentMethodEntity findById2(Long idPaymentMethod) {
+    //@Cacheable(cacheNames = "getPaymemtMethodById", key = "#idPaymentMethod")
+    public PaymentMethodEntity findEntityById(Long idPaymentMethod) {
         return paymentMethodRepository.findById(idPaymentMethod).orElseThrow(NotFoundException::new);
     }
 
-    @Cacheable(cacheNames = "getPaymemtVOById", key = "#idPaymentMethod")
-    public PaymentMethodVO findById(Long idPaymentMethod) {
+    //@Cacheable(cacheNames = "getPaymemtVOById", key = "#idPaymentMethod")
+    public PaymentMethodVO findVoById(Long idPaymentMethod) {
         return entityToVo(paymentMethodRepository.findById(idPaymentMethod).orElseThrow(NotFoundException::new));
     }
 
