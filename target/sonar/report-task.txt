@@ -1,0 +1,6 @@
+projectKey=br.com:controlefinanceiro
+serverUrl=http://localhost:9000
+serverVersion=8.2.0.32929
+dashboardUrl=http://localhost:9000/dashboard?id=br.com%3Acontrolefinanceiro
+ceTaskId=AXC2VvfS_sCQpkL9VpjR
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXC2VvfS_sCQpkL9VpjR
