@@ -1,10 +1,12 @@
 package br.com.controlefinanceiro.domain.wallet;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-13T18:13:20-0300",
+    date = "2020-03-14T09:40:39-0300",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 1.8.0_221 (Oracle Corporation)"
 )
 public class WalletMapperImpl implements WalletMapper {
@@ -37,5 +39,19 @@ public class WalletMapperImpl implements WalletMapper {
         walletEntity.setOverdraft( vo.getOverdraft() );
 
         return walletEntity;
+    }
+
+    @Override
+    public List<WalletVO> entitiesToVOs(List<WalletEntity> entities) {
+        if ( entities == null ) {
+            return null;
+        }
+
+        List<WalletVO> list = new ArrayList<WalletVO>( entities.size() );
+        for ( WalletEntity walletEntity : entities ) {
+            list.add( entityToVO( walletEntity ) );
+        }
+
+        return list;
     }
 }

@@ -3,6 +3,8 @@ package br.com.controlefinanceiro.domain.wallet;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface WalletMapper {
 
@@ -11,5 +13,7 @@ public interface WalletMapper {
     WalletVO entityToVO(WalletEntity entity);
 
     WalletEntity VOtoEntity(WalletVO vo);
+
+    List<WalletVO> entitiesToVOs(List<WalletEntity> entities);
 
 }

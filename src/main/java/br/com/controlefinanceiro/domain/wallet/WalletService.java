@@ -3,6 +3,8 @@ package br.com.controlefinanceiro.domain.wallet;
 import br.com.controlefinanceiro.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WalletService {
 
@@ -18,6 +20,10 @@ public class WalletService {
 
     public WalletEntity findById(Long id){
         return repository.findById(id).orElseThrow(NotFoundException::new);
+    }
+
+    public List<WalletVO> findAll(){
+        return WalletMapper.INSTANCE.entitiesToVOs(repository.findAll());
     }
 
 }

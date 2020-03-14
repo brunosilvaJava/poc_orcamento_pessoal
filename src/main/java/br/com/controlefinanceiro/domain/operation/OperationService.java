@@ -22,6 +22,7 @@ import java.time.Period;
 import java.time.Year;
 import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -101,8 +102,6 @@ public class OperationService {
                 .wallet(walletEntity)
                 .build()));
 
-
-
     }
 
     private List<Integer> getFrequencyForWeek(List<Integer> daysWeek){
@@ -132,6 +131,8 @@ public class OperationService {
 
         LocalDate dateDue = LocalDate.from(dateStart);
 
+        boolean isDatesConcluded = false;
+
         switch (paymentRecurrentType){
 
             case WEEKLY:
@@ -155,15 +156,59 @@ public class OperationService {
                 break;
 
             case BIWEEKLY:
+
+                dateDue = LocalDate.from(dateStart).withDayOfMonth(days.get(0));
+                if(dateStart.isAfter(dateDue)){
+                    dateDue = dateDue.plusMonths(1);
+                }
+
+                LocalDate dateDue2 = LocalDate.from(dateStart).withDayOfMonth(days.get(1));
+                if(dateStart.isAfter(dateDue2)){
+                    dateDue = dateDue.plusMonths(1);
+                }
+
+                isDatesConcluded = false;
+
+                while(!isDatesConcluded) {
+
+                    if(dateDue.isBefore(dateEnd)){
+                        datesDue.add(dateDue);
+                        dateDue = dateDue.plusMonths(1);
+                    }
+
+                    if(dateDue2.isBefore(dateEnd)){
+                        datesDue.add(dateDue2);
+                        dateDue2 = dateDue2.plusMonths(1);
+                    }
+                    else{
+                        isDatesConcluded = true;
+                    }
+
+                }
+
                 break;
 
             case MONTHLY:
+
+                dateDue = LocalDate.from(dateStart).withDayOfMonth(days.get(0));
+
+                if(dateStart.isAfter(dateDue)){
+                    dateDue = dateDue.plusMonths(1);
+                }
+
+                while(dateDue.isBefore(dateEnd)) {
+                    datesDue.add(dateDue);
+                    dateDue = dateDue.plusMonths(1);
+                }
+
                 break;
 
             case YEARLY:
                 break;
 
         }
+
+        datesDue.sort(Comparator.naturalOrder());
 
         return datesDue;
 
