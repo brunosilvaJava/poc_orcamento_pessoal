@@ -23,4 +23,6 @@ public class CreditCardVO {
 
     private Integer dayPay;
 
+    private Long idWallet;
+
 }

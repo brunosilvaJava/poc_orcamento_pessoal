@@ -3,6 +3,7 @@ package br.com.controlefinanceiro.domain.creditCard;
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodEntity;
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodService;
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodType;
+import br.com.controlefinanceiro.domain.wallet.WalletService;
 import br.com.controlefinanceiro.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class CreditCardService {
     private CreditCardRepository repository;
 
     private PaymentMethodService paymentMethodService;
+
+    private WalletService walletService;
 
     @Autowired
     public CreditCardService(CreditCardRepository repository,PaymentMethodService paymentMethodService){
@@ -31,6 +34,10 @@ public class CreditCardService {
                 .description(creditCardVO.getDescription())
                 .paymentMethodType(PaymentMethodType.CREDIT_CARD)
                 .build();
+
+        if(creditCardVO.getIdWallet() != null){
+            paymentMethodEntity.setWallet(walletService.findById(creditCardVO.getIdWallet()));
+        }
 
         paymentMethodService.create(paymentMethodEntity);
 

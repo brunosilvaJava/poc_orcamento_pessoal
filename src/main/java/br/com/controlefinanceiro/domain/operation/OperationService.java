@@ -63,7 +63,6 @@ public class OperationService {
 
         if(operationVO.getIdWallet() != null){
             walletEntity = walletService.findById(operationVO.getIdWallet());
-
         }
         else {
             walletEntity = operationEntity.getPaymentMethodEntity().getWallet();

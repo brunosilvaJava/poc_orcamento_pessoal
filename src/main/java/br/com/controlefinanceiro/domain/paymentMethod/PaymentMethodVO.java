@@ -19,4 +19,6 @@ public class PaymentMethodVO implements Serializable {
 
     private PaymentMethodType paymentMethodType;
 
+    private Long idWallet;
+
 }
