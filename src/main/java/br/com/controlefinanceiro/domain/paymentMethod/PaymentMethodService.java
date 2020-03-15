@@ -16,8 +16,9 @@ public class PaymentMethodService {
     private WalletService walletService;
 
     @Autowired
-    public PaymentMethodService(PaymentMethodRepository paymentMethodRepository){
+    public PaymentMethodService(PaymentMethodRepository paymentMethodRepository, WalletService walletService){
         this.paymentMethodRepository = paymentMethodRepository;
+        this.walletService = walletService;
     }
 
     public void create(PaymentMethodVO paymentMethodVO) {

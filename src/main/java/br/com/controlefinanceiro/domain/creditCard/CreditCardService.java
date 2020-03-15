@@ -21,9 +21,12 @@ public class CreditCardService {
     private WalletService walletService;
 
     @Autowired
-    public CreditCardService(CreditCardRepository repository,PaymentMethodService paymentMethodService){
+    public CreditCardService(CreditCardRepository repository,
+                             PaymentMethodService paymentMethodService,
+                             WalletService walletService){
         this.repository = repository;
         this.paymentMethodService = paymentMethodService;
+        this.walletService = walletService;
     }
 
     public void create(CreditCardVO creditCardVO) {

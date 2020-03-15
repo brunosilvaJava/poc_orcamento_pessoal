@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.YearMonth;
 import java.util.Collection;
 import java.util.List;
 import java.util.TreeMap;
@@ -65,4 +67,47 @@ public class CashFlowService {
         return cashFlowVOs;
     }
 
+    public Collection<CashFlowVO> cashFlowMonthly(LocalDate start, LocalDate end) {
+
+        TreeMap<YearMonth, CashFlowVO> cashFlow = new TreeMap<>();
+
+        List<MovementEntity> movements = movementService.findAll();
+
+        CashFlowVO cashFlowVO = null;
+        YearMonth yearMonth = null;
+
+        for (MovementEntity movement : movements) {
+
+            yearMonth = YearMonth.from(movement.getDatePrevisionPaymentByStatus());
+
+            if(cashFlow.containsKey(yearMonth)){
+                if(movement.isDeposit()){
+                    cashFlow.get(yearMonth).sumDeposit(movement.getValuePayment());
+                } else {
+                    cashFlow.get(yearMonth).sumOutflow(movement.getValuePayment());
+                }
+            } else {
+                cashFlowVO = CashFlowVO.builder()
+                        .month(yearMonth.toString())
+                        .build();
+                if(movement.isDeposit()){
+                    cashFlowVO.sumDeposit(movement.getValuePayment());
+                } else {
+                    cashFlowVO.sumOutflow(movement.getValuePayment());
+                }
+                cashFlow.put(yearMonth, cashFlowVO);
+            }
+        }
+
+        Collection<CashFlowVO> cashFlowVOs = cashFlow.values();
+
+        BigDecimal openingBalance = BigDecimal.ZERO;
+
+        for(CashFlowVO cf : cashFlowVOs) {
+            cf.setOpeningBalance(openingBalance);
+            openingBalance = cf.getBalance();
+        }
+
+        return cashFlowVOs;
+    }
 }

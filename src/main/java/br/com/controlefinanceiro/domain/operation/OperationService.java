@@ -195,7 +195,7 @@ public class OperationService {
                     dateDue = dateDue.plusMonths(1);
                 }
 
-                while(dateDue.isBefore(dateEnd)) {
+                while(!dateDue.isAfter(dateEnd)) {
                     datesDue.add(dateDue);
                     dateDue = dateDue.plusMonths(1);
                 }

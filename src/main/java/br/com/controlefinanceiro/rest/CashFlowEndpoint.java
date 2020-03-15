@@ -29,4 +29,10 @@ public class CashFlowEndpoint {
         return cashFlowService.cashFlow(start, end);
     }
 
+    @GetMapping("/monthly")
+    public Collection<CashFlowVO> monthly(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
+                                           @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end){
+        return cashFlowService.cashFlowMonthly(start, end);
+    }
+
 }

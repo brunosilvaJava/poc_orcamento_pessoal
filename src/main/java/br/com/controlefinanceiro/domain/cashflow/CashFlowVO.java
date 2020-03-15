@@ -15,6 +15,8 @@ import java.util.Objects;
 @AllArgsConstructor
 public class CashFlowVO implements Comparable<CashFlowVO>{
 
+    private String month;
+
     private LocalDate date;
 
     private BigDecimal openingBalance;
