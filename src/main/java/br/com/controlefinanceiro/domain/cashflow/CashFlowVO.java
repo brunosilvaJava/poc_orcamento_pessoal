@@ -37,7 +37,11 @@ public class CashFlowVO implements Comparable<CashFlowVO>{
     }
 
     public BigDecimal getBalance(){
-        return getOpeningBalance().add(getDeposit().subtract(getOutflow()));
+        return getOpeningBalance().add(getBalanceOfMonth());
+    }
+
+    public BigDecimal getBalanceOfMonth(){
+        return getDeposit().subtract(getOutflow());z''
     }
 
     public BigDecimal getOpeningBalance(){
