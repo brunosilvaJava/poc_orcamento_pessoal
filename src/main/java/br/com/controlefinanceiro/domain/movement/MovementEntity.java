@@ -84,9 +84,9 @@ public class MovementEntity implements Comparable<MovementEntity>{
             case PENDING:
                 return getDateDue();
             case LATE:
-                return getDatePayment();
-            case PAID_OUT:
                 return LocalDate.now();
+            case PAID_OUT:
+                return getDatePayment();
         }
         return null;
     }
