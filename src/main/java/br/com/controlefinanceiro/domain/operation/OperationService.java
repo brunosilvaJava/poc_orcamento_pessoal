@@ -222,7 +222,7 @@ public class OperationService {
         movementService.create(MovementEntity.builder()
                 .operation(operationEntity)
                 .valuePayment(value)
-                .status(StatusPaymentType.PENDING)
+                .status(StatusPaymentType.PAID_OUT)
                 .dateDue(operationEntity.getDateBuy())
                 .datePayment(operationEntity.getDateBuy())
                 .wallet(walletEntity)
