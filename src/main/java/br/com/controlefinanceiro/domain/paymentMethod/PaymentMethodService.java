@@ -3,7 +3,6 @@ package br.com.controlefinanceiro.domain.paymentMethod;
 import br.com.controlefinanceiro.domain.wallet.WalletService;
 import br.com.controlefinanceiro.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class PaymentMethodService {
         PaymentMethodEntity entity = PaymentMethodMapper.INSTANCE.voToEntity(paymentMethodVO);
 
         if(paymentMethodVO.getIdWallet() != null){
-            entity.setWallet(walletService.findById(paymentMethodVO.getIdWallet()));
+            entity.setWalletEntity(walletService.findById(paymentMethodVO.getIdWallet()));
         }
 
         create(entity);

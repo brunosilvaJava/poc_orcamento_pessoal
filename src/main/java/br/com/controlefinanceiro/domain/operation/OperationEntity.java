@@ -23,8 +23,8 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
-@Entity(name = "operation")
+@Entity
+@Table(name = "operation")
 public class OperationEntity {
 
     @Id

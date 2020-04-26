@@ -39,7 +39,7 @@ public class CreditCardService {
                 .build();
 
         if(creditCardVO.getIdWallet() != null){
-            paymentMethodEntity.setWallet(walletService.findById(creditCardVO.getIdWallet()));
+            paymentMethodEntity.setWalletEntity(walletService.findById(creditCardVO.getIdWallet()));
         }
 
         paymentMethodService.create(paymentMethodEntity);
@@ -51,7 +51,7 @@ public class CreditCardService {
     }
 
     public List<CreditCardVO> findAll() {
-        return CreditCardMapper.INSTANCE.entitysToVOs(repository.findAll());
+        return CreditCardMapper.INSTANCE.entitysToVOs(repository.find());
     }
 
     public CreditCardVO findById(Long idCreditCard) {

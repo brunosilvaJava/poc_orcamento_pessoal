@@ -23,8 +23,8 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
-@Entity(name = "payment_method")
+@Entity
+@Table(name = "payment_method")
 public class PaymentMethodEntity implements Serializable {
 
     @Id
@@ -42,6 +42,6 @@ public class PaymentMethodEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_wallet")
-    private WalletEntity wallet;
+    private WalletEntity walletEntity;
 
 }

@@ -16,7 +16,7 @@ interface MovementRepository extends JpaRepository<MovementEntity, Long> {
     List<MovementEntity> findByStatusAndDatePaymentGreaterThanEqualAndDatePaymentLessThanEqualOrderByDatePayment
             (StatusPaymentType status, LocalDate datePaymentStart, LocalDate datePaymentEnd);
 
-    @Query("select sum(m.valuePayment) from movement m where m.datePayment <= :datePayment")
+    @Query("select sum(m.valuePayment) from MovementEntity m where m.datePayment <= :datePayment")
     BigDecimal sumValuePaymentByDatePaymentLessThanEqual(@Param("datePayment") LocalDate datePayment);
 
 }

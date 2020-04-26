@@ -58,7 +58,7 @@ public class OperationService {
             walletEntity = walletService.findById(operationVO.getIdWallet());
         }
         else {
-            walletEntity = operationEntity.getPaymentMethod().getWallet();
+            walletEntity = operationEntity.getPaymentMethod().getWalletEntity();
         }
 
         switch (operationVO.getPaymentType()){
@@ -91,7 +91,7 @@ public class OperationService {
                 .valuePayment(valuePayment)
                 .status(StatusPaymentType.PENDING)
                 .dateDue(dateDue)
-                .wallet(walletEntity)
+                .walletEntity(walletEntity)
                 .build()));
 
     }
@@ -218,7 +218,7 @@ public class OperationService {
                 .status(StatusPaymentType.PAID_OUT)
                 .dateDue(operationEntity.getDateBuy())
                 .datePayment(operationEntity.getDateBuy())
-                .wallet(walletEntity)
+                .walletEntity(walletEntity)
                 .build());
     }
 
@@ -252,7 +252,7 @@ public class OperationService {
                             .valuePayment(valueInstallment)
                             .status(StatusPaymentType.PENDING)
                             .dateDue(dateDue.plusMonths(x))
-                            .wallet(walletEntity)
+                            .walletEntity(walletEntity)
                             .build();
 
             if(x == numberInstallments-1){

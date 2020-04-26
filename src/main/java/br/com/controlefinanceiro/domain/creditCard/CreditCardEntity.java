@@ -20,8 +20,8 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
-@Entity(name = "credit_card")
+@Entity
+@Table(name = "credit_card")
 public class CreditCardEntity {
 
     @Id

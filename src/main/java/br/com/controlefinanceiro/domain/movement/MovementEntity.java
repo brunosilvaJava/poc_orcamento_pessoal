@@ -26,8 +26,8 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
-@Entity(name = "movement")
+@Entity
+@Table(name = "movement")
 public class MovementEntity implements Comparable<MovementEntity>{
 
     @Id
@@ -54,7 +54,7 @@ public class MovementEntity implements Comparable<MovementEntity>{
 
     @ManyToOne
     @JoinColumn(name = "id_wallet")
-    private WalletEntity wallet;
+    private WalletEntity walletEntity;
 
     public boolean isDeposit(){
         return valuePayment.signum() > 0;

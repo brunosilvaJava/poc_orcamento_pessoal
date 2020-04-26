@@ -20,8 +20,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
-@Entity(name = "wallet")
+@Entity
+@Table(name = "wallet")
 public class WalletEntity  {
 
     @Id
@@ -35,7 +35,7 @@ public class WalletEntity  {
     @Column(name = "overdraft")
     private BigDecimal overdraft;
 
-    @OneToMany(mappedBy = "wallet")
+    @OneToMany(mappedBy = "walletEntity")
     private List<MovementEntity> movementEntityList;
 
 }

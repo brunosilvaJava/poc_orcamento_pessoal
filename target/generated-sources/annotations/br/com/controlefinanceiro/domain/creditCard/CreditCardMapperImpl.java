@@ -1,12 +1,16 @@
 package br.com.controlefinanceiro.domain.creditCard;
 
+import br.com.controlefinanceiro.domain.creditCard.CreditCardEntity.CreditCardEntityBuilder;
+import br.com.controlefinanceiro.domain.creditCard.CreditCardVO.CreditCardVOBuilder;
+import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodEntity;
+import br.com.controlefinanceiro.domain.wallet.WalletEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-04-26T13:42:53-0300",
+    date = "2020-04-26T17:40:56-0300",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 1.8.0_221 (Oracle Corporation)"
 )
 public class CreditCardMapperImpl implements CreditCardMapper {
@@ -17,14 +21,16 @@ public class CreditCardMapperImpl implements CreditCardMapper {
             return null;
         }
 
-        CreditCardVO creditCardVO = new CreditCardVO();
+        CreditCardVOBuilder creditCardVO = CreditCardVO.builder();
 
-        creditCardVO.setId( creditCardEntity.getId() );
-        creditCardVO.setValueLimit( creditCardEntity.getValueLimit() );
-        creditCardVO.setDayClosingEnvoice( creditCardEntity.getDayClosingEnvoice() );
-        creditCardVO.setDayPay( creditCardEntity.getDayPay() );
+        creditCardVO.description( creditCardEntityPaymentMethodEntityDescription( creditCardEntity ) );
+        creditCardVO.idWallet( creditCardEntityPaymentMethodEntityWalletEntityId( creditCardEntity ) );
+        creditCardVO.id( creditCardEntity.getId() );
+        creditCardVO.valueLimit( creditCardEntity.getValueLimit() );
+        creditCardVO.dayClosingEnvoice( creditCardEntity.getDayClosingEnvoice() );
+        creditCardVO.dayPay( creditCardEntity.getDayPay() );
 
-        return creditCardVO;
+        return creditCardVO.build();
     }
 
     @Override
@@ -33,14 +39,14 @@ public class CreditCardMapperImpl implements CreditCardMapper {
             return null;
         }
 
-        CreditCardEntity creditCardEntity = new CreditCardEntity();
+        CreditCardEntityBuilder creditCardEntity = CreditCardEntity.builder();
 
-        creditCardEntity.setId( creditCardVO.getId() );
-        creditCardEntity.setValueLimit( creditCardVO.getValueLimit() );
-        creditCardEntity.setDayClosingEnvoice( creditCardVO.getDayClosingEnvoice() );
-        creditCardEntity.setDayPay( creditCardVO.getDayPay() );
+        creditCardEntity.id( creditCardVO.getId() );
+        creditCardEntity.valueLimit( creditCardVO.getValueLimit() );
+        creditCardEntity.dayClosingEnvoice( creditCardVO.getDayClosingEnvoice() );
+        creditCardEntity.dayPay( creditCardVO.getDayPay() );
 
-        return creditCardEntity;
+        return creditCardEntity.build();
     }
 
     @Override
@@ -55,5 +61,39 @@ public class CreditCardMapperImpl implements CreditCardMapper {
         }
 
         return list;
+    }
+
+    private String creditCardEntityPaymentMethodEntityDescription(CreditCardEntity creditCardEntity) {
+        if ( creditCardEntity == null ) {
+            return null;
+        }
+        PaymentMethodEntity paymentMethodEntity = creditCardEntity.getPaymentMethodEntity();
+        if ( paymentMethodEntity == null ) {
+            return null;
+        }
+        String description = paymentMethodEntity.getDescription();
+        if ( description == null ) {
+            return null;
+        }
+        return description;
+    }
+
+    private Long creditCardEntityPaymentMethodEntityWalletEntityId(CreditCardEntity creditCardEntity) {
+        if ( creditCardEntity == null ) {
+            return null;
+        }
+        PaymentMethodEntity paymentMethodEntity = creditCardEntity.getPaymentMethodEntity();
+        if ( paymentMethodEntity == null ) {
+            return null;
+        }
+        WalletEntity walletEntity = paymentMethodEntity.getWalletEntity();
+        if ( walletEntity == null ) {
+            return null;
+        }
+        Long id = walletEntity.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 }
