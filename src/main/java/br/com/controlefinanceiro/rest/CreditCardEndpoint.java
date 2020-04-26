@@ -33,14 +33,19 @@ public class CreditCardEndpoint {
         return ResponseEntity.ok(creditCardService.findAll());
     }
 
+    @PutMapping("/{idCreditCard}")
+    public void update(@RequestBody CreditCardVO creditCardVO){
+        creditCardService.update(creditCardVO);
+    }
+
     @GetMapping("/{idCreditCard}")
     public ResponseEntity findById(@PathVariable(name = "idCreditCard") Long idCreditCard){
         return ResponseEntity.ok(creditCardService.findById(idCreditCard));
     }
 
-    @PutMapping("/{idCreditCard}")
-    public void update(@RequestBody CreditCardVO creditCardVO){
-        creditCardService.update(creditCardVO);
+    @GetMapping("/{idCreditCard}/invoice")
+    public ResponseEntity findInvoiceCardById(@PathVariable(name = "idCreditCard") Long idCreditCard){
+        return ResponseEntity.ok(creditCardService.findInvoiceCardById(idCreditCard));
     }
 
 }

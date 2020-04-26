@@ -3,6 +3,7 @@ package br.com.controlefinanceiro.domain.movement;
 import br.com.controlefinanceiro.domain.operation.OperationEntity;
 import br.com.controlefinanceiro.domain.operation.StatusPaymentType;
 import br.com.controlefinanceiro.domain.wallet.WalletEntity;
+import br.com.controlefinanceiro.exceptions.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -88,7 +89,7 @@ public class MovementEntity implements Comparable<MovementEntity>{
             case PAID_OUT:
                 return getDatePayment();
         }
-        return null;
+        throw new NotFoundException();
     }
 
 }

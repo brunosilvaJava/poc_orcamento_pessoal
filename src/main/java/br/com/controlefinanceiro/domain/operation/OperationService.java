@@ -9,22 +9,15 @@ import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodType;
 import br.com.controlefinanceiro.domain.wallet.WalletEntity;
 import br.com.controlefinanceiro.domain.wallet.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Period;
-import java.time.Year;
-import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class OperationService {
@@ -54,7 +47,7 @@ public class OperationService {
                 .operationType(operationVO.getOperationType())
                 .dateBuy(operationVO.getDateBuy() != null ? operationVO.getDateBuy() : LocalDate.now())
                 .paymentType(operationVO.getPaymentType())
-                .paymentMethodEntity(paymentMethodService.findEntityById(operationVO.getIdPaymentMethod()))
+                .paymentMethod(paymentMethodService.findEntityById(operationVO.getIdPaymentMethod()))
                 .build();
 
         operationRepository.save(operationEntity);
@@ -65,7 +58,7 @@ public class OperationService {
             walletEntity = walletService.findById(operationVO.getIdWallet());
         }
         else {
-            walletEntity = operationEntity.getPaymentMethodEntity().getWallet();
+            walletEntity = operationEntity.getPaymentMethod().getWallet();
         }
 
         switch (operationVO.getPaymentType()){
@@ -245,7 +238,7 @@ public class OperationService {
         LocalDate dateDue = null;
 
         if(PaymentMethodType.CREDIT_CARD == operationEntity.getPaymentMethodType()){
-            CreditCardEntity creditCardEntity = creditCardService.findByPaymentMethod(operationEntity.getPaymentMethodEntity());
+            CreditCardEntity creditCardEntity = creditCardService.findByPaymentMethod(operationEntity.getPaymentMethod());
             dateDue = creditCardService.getDateDue(operationEntity.getDateBuy(), creditCardEntity);
         } else {
             dateDue = operationVO.getDateBuy().plusMonths(1);

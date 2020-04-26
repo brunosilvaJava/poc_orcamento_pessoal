@@ -22,12 +22,14 @@ br/com/controlefinanceiro/domain/paymentMethod/PaymentMethodRepository.class
 br/com/controlefinanceiro/domain/creditCard/CreditCardService.class
 br/com/controlefinanceiro/domain/creditCard/CreditCardVO$CreditCardVOBuilder.class
 br/com/controlefinanceiro/domain/paymentMethod/PaymentMethodVO$PaymentMethodVOBuilder.class
+br/com/controlefinanceiro/domain/creditCard/InvoiceCardVO$InvoiceCardVOBuilder.class
 br/com/controlefinanceiro/domain/paymentMethod/PaymentMethodEntity$PaymentMethodEntityBuilder.class
 br/com/controlefinanceiro/domain/operation/PaymentType.class
 br/com/controlefinanceiro/domain/creditCard/CreditCardEntity$CreditCardEntityBuilder.class
 br/com/controlefinanceiro/domain/operation/OperationVO.class
 br/com/controlefinanceiro/domain/cashflow/CashFlowService.class
 br/com/controlefinanceiro/rest/WalletEndpoint.class
+br/com/controlefinanceiro/domain/creditCard/InvoiceCardVO.class
 br/com/controlefinanceiro/exceptions/NotFoundException.class
 br/com/controlefinanceiro/domain/creditCard/CreditCardVO.class
 br/com/controlefinanceiro/domain/wallet/WalletVO$WalletVOBuilder.class
@@ -37,6 +39,7 @@ br/com/controlefinanceiro/domain/movement/MovementService.class
 br/com/controlefinanceiro/domain/wallet/WalletMapper.class
 br/com/controlefinanceiro/domain/paymentMethod/PaymentMethodVO.class
 br/com/controlefinanceiro/domain/creditCard/CreditCardMapperImpl.class
+br/com/controlefinanceiro/infraestructure/SwaggerConfig.class
 br/com/controlefinanceiro/domain/paymentMethod/PaymentMethodMapper.class
 br/com/controlefinanceiro/domain/wallet/WalletEntity$WalletEntityBuilder.class
 br/com/controlefinanceiro/domain/operation/OperationEntity$OperationEntityBuilder.class

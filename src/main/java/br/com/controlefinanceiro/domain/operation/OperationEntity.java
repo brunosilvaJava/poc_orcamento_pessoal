@@ -37,7 +37,7 @@ public class OperationEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_payment_method", nullable = false)
-    private PaymentMethodEntity paymentMethodEntity;
+    private PaymentMethodEntity paymentMethod;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "operation_type", nullable = false)
@@ -51,10 +51,10 @@ public class OperationEntity {
     private PaymentType paymentType;
 
     public PaymentMethodType getPaymentMethodType(){
-        if(Objects.isNull(paymentMethodEntity)){
+        if(Objects.isNull(paymentMethod)){
             return null;
         }
-        return paymentMethodEntity.getPaymentMethodType();
+        return paymentMethod.getPaymentMethodType();
     }
 
 }

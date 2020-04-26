@@ -6,7 +6,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-16T07:32:57-0300",
+    date = "2020-04-26T13:42:53-0300",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 1.8.0_221 (Oracle Corporation)"
 )
 public class CreditCardMapperImpl implements CreditCardMapper {

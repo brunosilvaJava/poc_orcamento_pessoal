@@ -4,10 +4,12 @@
 /home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/domain/cashflow/CashFlowService.java
 /home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/domain/paymentMethod/PaymentMethodVO.java
 /home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/domain/paymentMethod/PaymentMethodRepository.java
+/home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/infraestructure/SwaggerConfig.java
 /home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/domain/movement/MovementService.java
 /home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/domain/paymentMethod/PaymentMethodService.java
 /home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/domain/operation/OperationVO.java
 /home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/domain/operation/OperationRepository.java
+/home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/domain/creditCard/InvoiceCardVO.java
 /home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/domain/creditCard/CreditCardVO.java
 /home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/domain/creditCard/CreditCardRepository.java
 /home/bruno_silva/workspace/pessoal/ControleFinanceiro/controlefinanceiro/src/main/java/br/com/controlefinanceiro/rest/OperationEndpoint.java

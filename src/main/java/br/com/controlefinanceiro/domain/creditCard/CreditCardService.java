@@ -80,4 +80,8 @@ public class CreditCardService {
         return dateAux.withDayOfMonth(creditCardEntity.getDayPay());
     }
 
+    public InvoiceCardVO findInvoiceCardById(Long idCreditCard) {
+
+        return null;
+    }
 }
