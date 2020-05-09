@@ -2,6 +2,9 @@ package br.com.controlefinanceiro.rest;
 
 import br.com.controlefinanceiro.domain.creditCard.CreditCardService;
 import br.com.controlefinanceiro.domain.creditCard.CreditCardVO;
+import br.com.controlefinanceiro.domain.creditCard.InvoiceCardVO;
+import br.com.controlefinanceiro.domain.creditCard.invoice.InvoiceCardDetailVO;
+import br.com.controlefinanceiro.domain.operation.StatusPaymentType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+import java.time.Month;
+import java.time.Year;
 import java.util.List;
+import java.util.Objects;
 
 @Api(value = "/api/credit-card")
 @RestController
@@ -54,10 +61,35 @@ public class CreditCardEndpoint {
         return ResponseEntity.ok(creditCardService.findById(idCreditCard));
     }
 
-    /*@ApiOperation(value = "Retorna a fatura de um cartão de crédito.")
+    @ApiOperation(value = "Retorna faturas de um cartão de crédito.")
     @GetMapping("/{idCreditCard}/invoice")
-    public ResponseEntity findInvoiceCardById(@PathVariable(name = "idCreditCard") Long idCreditCard){
-        return ResponseEntity.ok(creditCardService.findInvoiceCardById(idCreditCard));
-    }*/
+    public ResponseEntity<List<InvoiceCardVO>> findInvoicesCardById(
+            @PathVariable(name = "idCreditCard") Long idCreditCard,
+            StatusPaymentType statusPaymentType,
+            Month month,
+            Integer year
+    ){
+
+        Year yearAux = Objects.nonNull(year) ? Year.of(year) : null;
+
+        return ResponseEntity.ok(creditCardService.findInvoicesCardById(idCreditCard, statusPaymentType, month, yearAux));
+    }
+
+    @ApiOperation(value = "Retorna a fatura de um cartão de crédito.")
+    @GetMapping("/{idCreditCard}/invoice/{idInvoice}/detail")
+    public ResponseEntity<List<InvoiceCardDetailVO>> findInvoiceCardDetailById(@PathVariable(name = "idCreditCard") Long idCreditCard,
+                                                                               @PathVariable(name = "idInvoice") Long idInvoice){
+        return ResponseEntity.ok(creditCardService.findInvoiceCardDetailById(idCreditCard, idInvoice));
+    }
+
+    @ApiOperation(value = "Efetua o pagamento de uma fatura de um cartão de crédito.")
+    @PutMapping("/{idCreditCard}/invoice/{idInvoice}/payment")
+    public ResponseEntity paymentInvoice(@PathVariable(name = "idCreditCard") Long idCreditCard,
+                                         @PathVariable(name = "idInvoice") Long idInvoice,
+                                         @PathVariable(name = "value") BigDecimal value){
+
+        creditCardService.paymentInvoice(idCreditCard, idInvoice, value);
+        return ResponseEntity.ok().build();
+    }
 
 }

@@ -1,5 +1,6 @@
 package br.com.controlefinanceiro.domain.movement;
 
+import br.com.controlefinanceiro.domain.creditCard.invoice.InvoiceEntity;
 import br.com.controlefinanceiro.domain.operation.OperationEntity;
 import br.com.controlefinanceiro.domain.operation.StatusPaymentType;
 import br.com.controlefinanceiro.domain.wallet.WalletEntity;
@@ -55,6 +56,10 @@ public class MovementEntity implements Comparable<MovementEntity>{
     @ManyToOne
     @JoinColumn(name = "id_wallet")
     private WalletEntity walletEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "id_invoice")
+    private InvoiceEntity invoiceEntity;
 
     public boolean isDeposit(){
         return valuePayment.signum() > 0;

@@ -1,5 +1,7 @@
 package br.com.controlefinanceiro.domain.creditCard;
 
+import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,5 +26,8 @@ public class CreditCardVO {
     private Integer dayPay;
 
     private Long idWallet;
+
+    @JsonIgnore
+    private PaymentMethodType paymentMethodType = PaymentMethodType.CREDIT_CARD;
 
 }

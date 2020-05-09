@@ -238,8 +238,7 @@ public class OperationService {
         LocalDate dateDue = null;
 
         if(PaymentMethodType.CREDIT_CARD == operationEntity.getPaymentMethodType()){
-            CreditCardEntity creditCardEntity = creditCardService.findByPaymentMethod(operationEntity.getPaymentMethod());
-            dateDue = creditCardService.getDateDue(operationEntity.getDateBuy(), creditCardEntity);
+            dateDue = creditCardService.getDateDue(operationEntity.getDateBuy(), operationEntity.getPaymentMethod());
         } else {
             dateDue = operationVO.getDateBuy().plusMonths(1);
         }

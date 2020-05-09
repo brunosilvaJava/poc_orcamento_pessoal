@@ -1,5 +1,6 @@
 package br.com.controlefinanceiro.domain.creditCard;
 
+import br.com.controlefinanceiro.domain.movement.MovementEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -11,12 +12,13 @@ public interface CreditCardMapper {
 
     CreditCardMapper INSTANCE = Mappers.getMapper(CreditCardMapper.class);
 
-    @Mapping(source = "paymentMethodEntity.description", target = "description")
-    @Mapping(source = "paymentMethodEntity.walletEntity.id", target = "idWallet")
+    @Mapping(source = "description", target = "description")
+    @Mapping(source = "walletEntity.id", target = "idWallet")
     CreditCardVO entityToVO(CreditCardEntity creditCardEntity);
 
     CreditCardEntity voToEntity(CreditCardVO creditCardVO);
 
     List<CreditCardVO> entitysToVOs(List<CreditCardEntity> creditCardEntityList);
+
 
 }

@@ -8,26 +8,17 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "credit_card")
-public class CreditCardEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_credit_card")
-    private Long id;
+@PrimaryKeyJoinColumn(name="id_payment_method")
+public class CreditCardEntity extends PaymentMethodEntity {
 
     @Column(name = "value_limit", nullable = false)
     private BigDecimal valueLimit;
@@ -37,9 +28,5 @@ public class CreditCardEntity {
 
     @Column(name = "day_pay", nullable = false)
     private Integer dayPay;
-
-    @ManyToOne
-    @JoinColumn(name = "id_payment_method")
-    private PaymentMethodEntity paymentMethodEntity;
 
 }

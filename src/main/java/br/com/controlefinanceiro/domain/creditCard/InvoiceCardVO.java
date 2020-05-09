@@ -1,5 +1,6 @@
 package br.com.controlefinanceiro.domain.creditCard;
 
+import br.com.controlefinanceiro.domain.operation.StatusPaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,10 +15,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class InvoiceCardVO {
 
+    private Long id;
+
     private String creditCard;
 
     private LocalDate dateDue;
 
     private BigDecimal totalValue;
+
+    private StatusPaymentType statusPaymentType;
 
 }
