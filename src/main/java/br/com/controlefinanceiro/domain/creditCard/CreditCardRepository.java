@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-interface CreditCardRepository extends JpaRepository<CreditCardEntity, Long> {
+public interface CreditCardRepository extends JpaRepository<CreditCardEntity, Long> {
 
     @Query("select cc from CreditCardEntity cc " +
             "inner join cc.walletEntity w ")

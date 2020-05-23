@@ -74,19 +74,18 @@ public class CreditCardService {
     }
 
     public LocalDate getDateDue(LocalDate dataBay, PaymentMethodEntity paymentMethodEntity){
-
         CreditCardEntity creditCardEntity = repository.findById(paymentMethodEntity.getId()).orElseThrow(NotFoundException::new);
-
         LocalDate dateAux = LocalDate.from(dataBay);
-
         int dayBay = dataBay.getDayOfMonth();
         int dayClosing = creditCardEntity.getDayClosingEnvoice().intValue();
-
+        int dayPay = creditCardEntity.getDayPay().intValue();
+        if(dayPay < dayClosing){
+            dateAux = dateAux.plusMonths(1);
+        }
         if(dayBay >= dayClosing){
             dateAux = dateAux.plusMonths(1);
         }
-
-        return dateAux.withDayOfMonth(creditCardEntity.getDayPay());
+        return dateAux.withDayOfMonth(dayPay);
     }
 
     public List<InvoiceCardVO> findInvoicesCardById(Long idPaymentMethod, StatusPaymentType statusPaymentType, Month month, Year year) {
