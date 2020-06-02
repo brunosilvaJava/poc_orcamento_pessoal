@@ -5,7 +5,6 @@ import br.com.controlefinanceiro.domain.creditCard.CreditCardRepository;
 import br.com.controlefinanceiro.domain.creditCard.CreditCardService;
 import br.com.controlefinanceiro.domain.creditCard.invoice.InvoiceService;
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodEntity;
-import br.com.controlefinanceiro.domain.wallet.WalletService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,6 +26,9 @@ public class CreditCardTest {
 
     @Mock
     private CreditCardRepository repository;
+
+    @Mock
+    private InvoiceService invoiceService;
 
     @Test
     public void getDateDue20DayClosing05EqualsDayBuyTest(){

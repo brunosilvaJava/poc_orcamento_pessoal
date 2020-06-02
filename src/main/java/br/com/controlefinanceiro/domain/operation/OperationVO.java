@@ -38,18 +38,3 @@ public class OperationVO {
     private PaymentRecurrentVO paymentRecurrent;
 
 }
-
-@Data
-class PaymentRecurrentVO {
-
-    private PaymentRecurrentType type;
-
-    private List<Integer> days;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate dateStart;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate dateEnd;
-
-}

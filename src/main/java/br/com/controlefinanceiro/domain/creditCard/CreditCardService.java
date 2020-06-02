@@ -3,6 +3,7 @@ package br.com.controlefinanceiro.domain.creditCard;
 import br.com.controlefinanceiro.domain.creditCard.invoice.InvoiceCardDetailVO;
 import br.com.controlefinanceiro.domain.creditCard.invoice.InvoiceEntity;
 import br.com.controlefinanceiro.domain.creditCard.invoice.InvoiceService;
+import br.com.controlefinanceiro.domain.creditCard.invoice.StatusInvoiceType;
 import br.com.controlefinanceiro.domain.operation.StatusPaymentType;
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodEntity;
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodType;
@@ -108,5 +109,20 @@ public class CreditCardService {
         invoiceEntity.setPaymentDate(LocalDate.now());
 
         repository.paymentInvoice(idInvoice);
+    }
+
+    public InvoiceEntity getInvoice(LocalDate dateDue, Long idCreditCard) {
+        InvoiceEntity invoiceEntity = invoiceService.findByDueDateAndCreditCardEntityId(dateDue, idCreditCard).orElse(null);
+        if(invoiceEntity != null) {
+            return invoiceEntity;
+        }
+        CreditCardEntity creditCardEntity = repository.findById(idCreditCard).orElseThrow(NotFoundException::new);
+        invoiceEntity = InvoiceEntity.builder()
+                .creditCardEntity(creditCardEntity)
+                .dueDate(dateDue)
+                .statusInvoiceType(StatusInvoiceType.OPEN)
+                .build();
+        invoiceService.create(invoiceEntity);
+        return invoiceEntity;
     }
 }

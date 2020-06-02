@@ -57,4 +57,8 @@ public class OperationEntity {
         return paymentMethod.getPaymentMethodType();
     }
 
+    public boolean isOperationOutFlow(){
+        return OperationType.OUTFLOW == this.getOperationType();
+    }
+
 }

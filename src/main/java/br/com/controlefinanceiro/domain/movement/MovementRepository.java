@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-interface MovementRepository extends JpaRepository<MovementEntity, Long> {
+public interface MovementRepository extends JpaRepository<MovementEntity, Long> {
 
     List<MovementEntity> findByStatusAndDatePaymentGreaterThanEqualAndDatePaymentLessThanEqualOrderByDatePayment
             (StatusPaymentType status, LocalDate datePaymentStart, LocalDate datePaymentEnd);
