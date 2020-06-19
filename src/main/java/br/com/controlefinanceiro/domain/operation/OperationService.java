@@ -2,6 +2,7 @@ package br.com.controlefinanceiro.domain.operation;
 
 import br.com.controlefinanceiro.domain.movement.MovementService;
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodService;
+import br.com.controlefinanceiro.domain.recurrent.RecurrentService;
 import br.com.controlefinanceiro.domain.wallet.WalletEntity;
 import br.com.controlefinanceiro.domain.wallet.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,13 +52,10 @@ public class OperationService {
 
         switch (operationVO.getPaymentType()){
             case IN_CASH:
-                movementService.createMovementPaymentInCash(operationEntity, operationVO.getTotalValue(), walletEntity);
+                movementService.createMovementPaymentInCash(operationEntity, operationVO.getValue(), walletEntity);
                 break;
             case INSTALLMENT:
-                movementService.createMovementsInstallments(operationEntity, operationVO.getDateBuy(), operationVO.getNumberInstallments(), operationVO.getTotalValue(), walletEntity);
-                break;
-            case RECURRENT:
-                movementService.createMovementsRecurrent(operationEntity, operationVO.getTotalValue(), walletEntity, operationVO.getPaymentRecurrent());
+                movementService.createMovementsInstallments(operationEntity, operationVO.getDateBuy(), operationVO.getNumberInstallments(), operationVO.getValue(), walletEntity);
                 break;
         }
     }

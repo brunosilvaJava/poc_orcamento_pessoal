@@ -20,7 +20,7 @@ public class OperationVO {
 
     private String description;
 
-    private BigDecimal totalValue;
+    private BigDecimal value;
 
     private Integer numberInstallments;
 
@@ -34,7 +34,5 @@ public class OperationVO {
     private Long idPaymentMethod;
 
     private Long idWallet;
-
-    private PaymentRecurrentVO paymentRecurrent;
 
 }

@@ -37,8 +37,6 @@ public class MovementServiceTest {
 
         PaymentRecurrentVO paymentRecurrentVO = PaymentRecurrentVO.builder()
                 .days(Arrays.asList(10))
-                .dateStart(LocalDate.of(2020, 1, 10))
-                .dateEnd(LocalDate.of(2020, 3, 10))
                 .type(PaymentRecurrentType.MONTHLY).build();
 
         movementService.createMovementsRecurrent(
@@ -76,8 +74,6 @@ public class MovementServiceTest {
 
         PaymentRecurrentVO paymentRecurrentVO = PaymentRecurrentVO.builder()
                 .days(Arrays.asList(10))
-                .dateStart(LocalDate.of(2020, 1, 10))
-                .dateEnd(LocalDate.of(2020, 3, 10))
                 .type(PaymentRecurrentType.MONTHLY).build();
 
         movementService.createMovementsRecurrent(

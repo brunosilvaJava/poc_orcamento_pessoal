@@ -4,10 +4,12 @@ import br.com.controlefinanceiro.domain.creditCard.CreditCardService;
 import br.com.controlefinanceiro.domain.creditCard.invoice.InvoiceEntity;
 import br.com.controlefinanceiro.domain.operation.OperationEntity;
 import br.com.controlefinanceiro.domain.operation.OperationType;
+import br.com.controlefinanceiro.domain.operation.OperationVO;
 import br.com.controlefinanceiro.domain.operation.PaymentRecurrentType;
 import br.com.controlefinanceiro.domain.operation.PaymentRecurrentVO;
 import br.com.controlefinanceiro.domain.operation.StatusPaymentType;
 import br.com.controlefinanceiro.domain.paymentMethod.PaymentMethodType;
+import br.com.controlefinanceiro.domain.recurrent.RecurrentService;
 import br.com.controlefinanceiro.domain.wallet.WalletEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -120,7 +122,6 @@ public class MovementService {
                 .build()));
 
         repository.saveAll(movementEntities);
-
     }
 
     public List<LocalDate> getDatesDue(PaymentRecurrentVO paymentRecurrentVO) {
@@ -129,8 +130,8 @@ public class MovementService {
 
         PaymentRecurrentType paymentRecurrentType = paymentRecurrentVO.getType();
         List<Integer> days = paymentRecurrentVO.getDays();
-        LocalDate dateStart = paymentRecurrentVO.getDateStart();
-        LocalDate dateEnd = paymentRecurrentVO.getDateEnd();
+        LocalDate dateStart = null;
+        LocalDate dateEnd = null;
 
         LocalDate dateDue = LocalDate.from(dateStart);
 

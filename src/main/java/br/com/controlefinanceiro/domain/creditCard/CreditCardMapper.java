@@ -1,6 +1,5 @@
 package br.com.controlefinanceiro.domain.creditCard;
 
-import br.com.controlefinanceiro.domain.movement.MovementEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

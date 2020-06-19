@@ -1,24 +1,33 @@
 package br.com.controlefinanceiro.domain.operation;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PaymentRecurrentVO {
 
-    private PaymentRecurrentType type;
+    private Long id;
+
+    private String description;
+
+    private BigDecimal value;
 
     private List<Integer> days;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate dateStart;
+    private PaymentRecurrentType type;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate dateEnd;
+    private OperationType operationType;
+
+    private Long idPaymentMethod;
+
+    private Long idWallet;
 
 }
